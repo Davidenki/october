@@ -118,6 +118,8 @@ class ListController extends ControllerBehavior
         }
 
         $listConfig = $this->controller->listGetConfig($definition);
+        
+        $this->controller->listExtendConfig($listConfig, $definition);
 
         /*
          * Create the model
@@ -125,7 +127,7 @@ class ListController extends ControllerBehavior
         $class = $listConfig->modelClass;
         $model = new $class;
         $model = $this->controller->listExtendModel($model, $definition);
-
+        
         /*
          * Prepare the list widget
          */
@@ -464,6 +466,16 @@ class ListController extends ControllerBehavior
      */
     public function listFilterExtendScopes($host)
     {
+    }
+    
+    /**
+     * Controller override: Provides an opportunity to manipulate the list configuration.
+     * @param object $config
+     * @param string $definition (optional)
+     * @return void
+     */
+    public function listExtendConfig($config, $definition = null)
+    {   
     }
 
     /**
